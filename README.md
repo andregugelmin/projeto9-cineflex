@@ -33,3 +33,5 @@ Nessa semana você fará uma *Single-Page Application* (SPA) para um cinema, usa
 - Rodapé
     - [ ]  Ao longo das telas de Sessão e Assento, deve ser exibido um rodapé com as informações do filme selecionado. Estas informações virão das chamadas à API em cada tela
 - Sucesso
+    - [ ]  Implementar layout conforme fornecido, exibindo os dados do pedido feito
+    - [ ]  Ao clicar em "Home" o usuário deve voltar para a rota inicial ("/"), com o pedido zerado
