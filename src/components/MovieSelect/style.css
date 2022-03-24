@@ -1,0 +1,32 @@
+.movie-select{
+    padding-top: 67px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-select main{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-left: 30px;
+    padding-right: 25px;
+}
+
+.poster{
+    width: 145px;
+    height: 209px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-right: 5px;
+}
+
+.poster img{
+    width: 129px;
+    height: 193px;
+}

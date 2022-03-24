@@ -1,0 +1,20 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background: #E5E5E5;
+}
+
+.page-title{
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    color: #293845;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
