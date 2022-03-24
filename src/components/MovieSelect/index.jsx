@@ -23,7 +23,7 @@ function MovieSelect() {
         <span className="page-title">Selecione o filme</span>
         <main>
           {movies.map(movie => {
-            return <Link to={`/movie/${movie.id}`} key={movie.id}>
+            return <Link to={`/sessions/${movie.id}`} key={movie.id}>
               <div className="poster">
                 <img src={movie.posterURL} alt={movie.title}/>
               </div>

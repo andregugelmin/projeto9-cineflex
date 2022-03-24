@@ -4,8 +4,8 @@ import "./style.css";
 
 import Header from "../Header";
 import MovieSelect from '../MovieSelect';
-import TimeSelect from '../TimeSelect';
 import SessionSelect from '../SessionSelect';
+import SeatsSelect from '../SeatsSelect';
 import SelectionSuccess from '../SelectionSuccess';
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
         <Header />
         <Routes>
             <Route path="/" element={<MovieSelect />} />
-            <Route path="/movie/:movieId" element={<TimeSelect/>} />
-            <Route path="/session" element={<SessionSelect/>} />
+            <Route path="/sessions/:movieId" element={<SessionSelect/>} />
+            <Route path="/seats/:sessionId" element={<SeatsSelect/>} />
             <Route path="/success" element={<SelectionSuccess/>} />
         </Routes>
     </BrowserRouter>

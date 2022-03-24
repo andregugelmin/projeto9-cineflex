@@ -1,0 +1,128 @@
+.seats-select{
+    padding-top: 67px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seats-select main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.seats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 330px;
+}
+
+.seats span{
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7px;
+    margin-bottom: 18px;
+}
+
+.seat{
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    color: #000000;
+
+}
+
+.seat-available{
+    background: #C3CFD9;
+    border: 1px solid #808F9D;
+}
+
+.seat-unavailable{
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.seat-selected{
+    background: #8DD7CF;
+    border: 1px solid #45BDB0;
+}
+
+.icons-legends{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.icon-legend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-legend span{
+    width: 25px;
+    height: 25px;
+    border-radius: 17px;
+    margin-bottom: 5px;
+}
+
+.icon-legend p{
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.013em;
+    color: #4E5A65;
+    margin-bottom: 45px;
+}
+
+.customer-data span{
+    font-size: 18px;
+    line-height: 21px;
+    color: #293845;
+}
+
+.customer-data input{
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    width: 100%;
+    height: 51px;
+    margin-bottom: 7px;
+    margin-top: 2px;
+    padding-left: 18px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.customer-data input:focus{
+    outline: 1px solid lightseagreen;
+}
+
+.customer-data input::placeholder {
+    color: #AFAFAF;
+}
+
+.seats-select button{
+    width: 225px;
+    height: 42px;
+    background: #E8833A;
+    border-radius: 3px;
+    border: none;
+    margin: 57px auto;
+    display: block;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+}

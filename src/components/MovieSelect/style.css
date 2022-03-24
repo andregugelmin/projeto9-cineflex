@@ -26,6 +26,10 @@
     margin-right: 5px;
 }
 
+.poster:hover {
+    cursor: pointer;
+}
+
 .poster img{
     width: 129px;
     height: 193px;
