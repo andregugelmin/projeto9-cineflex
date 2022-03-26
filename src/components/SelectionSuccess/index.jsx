@@ -41,6 +41,7 @@ function SelectionSuccess() {
         <p>Nome: {name}</p>
         <p>CPF: {cpf}</p>
       </div>
+      <Link style={{textDecoration: 'none'}} to={`/`}><button>Voltar pra Home</button></Link>
     </div>
 
   )

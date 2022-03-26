@@ -7,10 +7,10 @@ import "./style.css";
 function SeatsSelect() {
   const { sessionId } = useParams();
 
-  const [session, setSession] = useState([]);
+  const [session, setSession] = useState({});
   const [seats, setSeats] = useState([]);
   const [seatsSelected, setSelectedSeats] = useState([]);
-
+  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   
   const [userInfo, setUserInfo] = useState({
@@ -26,6 +26,7 @@ function SeatsSelect() {
 		requisition.then(response => {
 			setSession(response.data);
       setSeats(response.data.seats);
+      setLoaded(true);
 		});
 	}, []);
 
@@ -78,7 +79,7 @@ function SeatsSelect() {
 
   
 
-  return (
+  return loaded ? (
       <div className="seats-select">
         <span className="page-title">Selecione o(s) assento(s)</span>
         <main>
@@ -122,9 +123,20 @@ function SeatsSelect() {
           </form>  
 
         </main>
+
+        <footer>
+          <div className="footer-poster">
+            <img src={session.movie.posterURL} alt={session.title}/>            
+          </div>
+          <div className="footer-info">
+            <span>{session.movie.title}</span>
+            <span>{session.day.weekday} - {session.name}</span>
+          </div>
+          
+        </footer>
       </div>
     
-  )
+  ) : (<></>)
 }
 
 export default SeatsSelect;
