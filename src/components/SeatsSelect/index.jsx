@@ -46,7 +46,6 @@ function SeatsSelect() {
 
     if(seat.isAvailable){
       if(seatsSelected.includes(seat.id)){
-        console.log('contem');
         while(aux[i].idAssento!=seat.id){
           i++;
         }
@@ -66,7 +65,6 @@ function SeatsSelect() {
         aux.push({idAssento:seat.id, nome: "", cpf: ""});
       }
       setCustomersInfo([...aux]);  
-      console.log(seatsSelected);
     }else{
       alert('Assento não disponível');
     }

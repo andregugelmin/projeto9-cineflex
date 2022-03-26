@@ -6,7 +6,6 @@ function Header() {
   let location = useLocation();
   let pagePath = location.pathname;
 
-  console.log(pagePath);
   if(pagePath === "/") {
     return (
       <header>
