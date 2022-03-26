@@ -9,7 +9,6 @@ function SelectionSuccess() {
 
   const location = useLocation();
   const {name, cpf, seats, sessionId} = location.state;
-  console.log(name, cpf, seats, sessionId);
   const [session, setSession] = useState({});
   const [loaded, setLoaded] = useState(false);
 
@@ -18,7 +17,6 @@ function SelectionSuccess() {
 
 		requisition.then(response => {
 			setSession(response.data);
-      console.log(session);
       setLoaded(true);
 		});
 	}, []);

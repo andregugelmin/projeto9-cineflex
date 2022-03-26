@@ -15,9 +15,6 @@ function MovieSelect() {
 		});
 	}, []);
 
-  
-  console.log(movies);
-
   return (
       <div className="movie-select">
         <span className="page-title">Selecione o filme</span>

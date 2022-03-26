@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 import "./style.css";
 
@@ -8,7 +8,10 @@ import SessionSelect from '../SessionSelect';
 import SeatsSelect from '../SeatsSelect';
 import SelectionSuccess from '../SelectionSuccess';
 
+
 function App() {
+  
+
   return (
     <BrowserRouter>
         <Header />

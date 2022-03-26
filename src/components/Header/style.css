@@ -14,3 +14,11 @@ header h1{
     line-height: 40px;
     color: #E8833A;
 }
+
+header ion-icon{
+    font-size: 35px;
+    color: #E8833A;
+    position: absolute;
+    left: 20px;
+    top: 17px;
+}

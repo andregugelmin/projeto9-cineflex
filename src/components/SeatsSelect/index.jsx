@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -32,8 +32,7 @@ function SeatsSelect() {
 
   useEffect(() => {
     if(userInfo.seats.length > 0) {
-      console.log(userInfo);
-      
+            
       const requisition = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
         ids: userInfo.seats,
         name: userInfo.name,
