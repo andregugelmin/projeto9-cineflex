@@ -2,13 +2,12 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 import "./style.css";
 
 function SelectionSuccess() {  
 
   const location = useLocation();
-  const {name, cpf, seats, sessionId} = location.state;
+  const {compradores, seats, sessionId} = location.state;
   const [session, setSession] = useState({});
   const [loaded, setLoaded] = useState(false);
 
@@ -35,9 +34,14 @@ function SelectionSuccess() {
         {seats.map(seat => <p key={seat}>Assento {seat%50}</p>)}
       </div>
       <div className="info">
-        <h2>Comprador</h2>
-        <p>Nome: {name}</p>
-        <p>CPF: {cpf}</p>
+        <h2>Compradores</h2>
+        {compradores.map((comprador, index) =>{ 
+          return(
+          <div key={index} className="comprador">
+            <p>Nome: {comprador.nome}</p>
+            <p>CPF: {comprador.cpf}</p>
+          </div>)
+        })}
       </div>
       <Link style={{textDecoration: 'none'}} to={`/`}><button>Voltar pra Home</button></Link>
     </div>

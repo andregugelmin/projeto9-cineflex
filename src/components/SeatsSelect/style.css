@@ -93,6 +93,15 @@
     color: #293845;
 }
 
+.customer-data p{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 21px;
+    color: #293845;
+    margin-bottom: 7px;
+    margin-top: 20px;
+}
+
 .customer-data input{
     background: #FFFFFF;
     border: 1px solid #D5D5D5;

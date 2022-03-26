@@ -6,18 +6,21 @@ import "./style.css";
 
 function SeatsSelect() {
   const { sessionId } = useParams();
+  const [loaded, setLoaded] = useState(false);
+
+  const [customersInfo, setCustomersInfo] = useState([]);
+  const [seatsSelected, setSelectedSeats] = useState([]);
 
   const [session, setSession] = useState({});
   const [seats, setSeats] = useState([]);
-  const [seatsSelected, setSelectedSeats] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  
+  
   const navigate = useNavigate();
   
-  const [userInfo, setUserInfo] = useState({
-    name: '',
-    cpf: '',
+  const [usersInfo, setUsersInfo] = useState({
+    compradores: [],
     seats: [],
-    sessionId: 0
+    sessionId: sessionId
   });
 
 	useEffect(() => {
@@ -30,53 +33,71 @@ function SeatsSelect() {
 		});
 	}, []);
 
-  useEffect(() => {
-    if(userInfo.seats.length > 0) {
-            
-      const requisition = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
-        ids: userInfo.seats,
-        name: userInfo.name,
-        cpf: userInfo.cpf
-      });
-      requisition.then(response => {
-        navigate('/success', { state: userInfo });
-      })
-
-      requisition.catch(error => {
-        alert(error.response.data.message);
-      })
-    }
-  }, [userInfo]);
-
   function arrayRemove(arr, value) { 
     
     return arr.filter(function(ele){ 
         return ele != value; 
     });
-}
+  }
 
   function selectSeat(seat){
+    let aux = [...customersInfo];
+    let i = 0;
+
     if(seat.isAvailable){
-      seatsSelected.includes(seat.id) ? setSelectedSeats(arrayRemove(seatsSelected, seat.id)) : setSelectedSeats([...seatsSelected, parseInt(seat.id)]);
-        
+      if(seatsSelected.includes(seat.id)){
+        console.log('contem');
+        while(aux[i].idAssento!=seat.id){
+          i++;
+        }
+        if(aux[i].nome != "" || aux[i].cpf != ""){
+          if (window.confirm("Tem certeza?")) {
+            setSelectedSeats(arrayRemove(seatsSelected, seat.id));        
+            aux = arrayRemove(aux, aux[i]);
+          }
+        }
+        else{
+          setSelectedSeats(arrayRemove(seatsSelected, seat.id));        
+          aux = arrayRemove(aux, aux[i]);
+        }        
+      }
+      else{
+        setSelectedSeats([...seatsSelected, parseInt(seat.id)]);
+        aux.push({idAssento:seat.id, nome: "", cpf: ""});
+      }
+      setCustomersInfo([...aux]);  
+      console.log(seatsSelected);
     }else{
-      alert('Seat not available');
+      alert('Assento não disponível');
     }
   }
 
   function bookSeats(event){
-    event.preventDefault()
+    event.preventDefault();
     
     if(seatsSelected.length > 0){
-      setUserInfo({...userInfo, sessionId: session.id, seats: seatsSelected}); 
-      
+      setUsersInfo({...usersInfo, seats: seatsSelected, compradores: customersInfo}); 
     }
     else{
       alert('Selecione pelo menos um assento');
     }    
   }
 
-  
+  useEffect(() => {
+    if(seatsSelected.length > 0) {            
+      const requisition = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
+        ids: seatsSelected,
+        compradores: customersInfo
+      });
+      requisition.then(response => {
+        navigate('/success', { state: usersInfo });
+      })
+
+      requisition.catch(error => {
+        alert(error.response.data.message);
+      })
+    }
+  }, [usersInfo]);
 
   return loaded ? (
       <div className="seats-select">
@@ -107,16 +128,7 @@ function SeatsSelect() {
           </div>
 
           <form onSubmit={bookSeats}>
-            <div className="customer-data">
-              <div className="customer-name">
-                <span>Nome do comprador: </span>
-                <input required type="text" placeholder="Digite seu nome..." value={userInfo.name} onChange={e => setUserInfo({...userInfo, name: e.target.value})}/>
-              </div>
-              <div className="customer-cpf">
-                <span>CPF do comprador: </span>
-                <input required type="number" placeholder="Digite seu CPF..." value={userInfo.cpf} onChange={e => setUserInfo({...userInfo, cpf: e.target.value})}/>
-              </div>
-            </div>
+            {customersInfo.map((customer, index) => <UserData key={index} index={index} customersInfo={customersInfo} setCustomersInfo={setCustomersInfo}/>)}            
 
             <button type="submit">Reservar assento(s)</button>
           </form>  
@@ -136,6 +148,35 @@ function SeatsSelect() {
       </div>
     
   ) : (<></>)
+}
+
+function UserData(props){
+  const {index, customersInfo, setCustomersInfo} = props;
+  function updateName(event){
+    let aux = [...customersInfo];
+    aux[index].nome = event.target.value;
+    setCustomersInfo(aux);
+  }
+
+  function updateCPF(event){
+    let aux = [...customersInfo];
+    aux[index].cpf = event.target.value;
+    setCustomersInfo(aux);
+  }
+
+  return(
+    <div className="customer-data">
+      <p>Assento {customersInfo[index].idAssento%50}</p>
+      <div className="customer-name">
+        <span>Nome do comprador: </span>
+        <input required type="text" placeholder="Digite seu nome..." value={customersInfo[index].nome} onChange={e => updateName(e)}/>
+      </div>
+      <div className="customer-cpf">
+        <span>CPF do comprador: </span>
+        <input required type="number" placeholder="Digite seu CPF..." value={customersInfo[index].cpf} onChange={e => updateCPF(e)}/>
+      </div>
+    </div>
+  )
 }
 
 export default SeatsSelect;
