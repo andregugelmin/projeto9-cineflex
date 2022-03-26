@@ -42,9 +42,6 @@ Nessa semana você fará uma *Single-Page Application* (SPA) para um cinema, usa
     - [x]  Adicione um botão de voltar no topo do site à esquerda
     - [x]  O topo do site deve estar fora dos componentes das páginas, ou seja, fora do <Switch> do React Router
     - [x]  Ao clicar no botão voltar, o usuário deve retornar para a página que estava anteriormente
-        
-        **Dica**: pesquise pela função `useHistory()` do React Router
-        
     - [x]  O botão não deve ser exibido na tela inicial
 - Informação de comprador por assento
     - [x]  Faça com que os campos de Nome e CPF do comprador deixem de ser um único campo para serem campos pra cada assento selecionado. Ou seja, cada assento selecionado terá seu próprio Nome e CPF
